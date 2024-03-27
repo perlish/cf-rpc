@@ -20,10 +20,10 @@ export default {
 		}
 
 		const mobileHeader = request.headers.get('X-Synesis-Mobile')
-		if (mobileHeader) {
+		if (mobileHeader || mobileHeader === 'true') {
 			corsHeaders['Access-Control-Allow-Origin'] = '*'
 		} else {
-			corsHeaders['Access-Control-Allow-Origin'] = 'train.synesis.one, dyf-staging.synesis.one, kanon.exchange, kanon.synesis.one, kanon-staging.synesis.one'
+			corsHeaders['Access-Control-Allow-Origin'] = '*.synesis.one'
 		}
 
 		if (request.method === "OPTIONS") {
