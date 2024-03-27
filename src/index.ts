@@ -20,7 +20,7 @@ export default {
 		const requestOrigin = request.headers;
 		console.log('requestOrigin is', requestOrigin);
 		if (allowedOrigins.includes(requestOrigin)) {
-			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin;
+			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin.headers.origin;
 		} else {
 			const mobileHeader = request.headers.get('X-Synesis-Mobile')
 			if (mobileHeader || mobileHeader === 'true') {
