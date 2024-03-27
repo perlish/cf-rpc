@@ -18,7 +18,7 @@ export default {
 			"Access-Control-Allow-Headers": "*",
 		}
 		const requestOrigin = request.headers;
-		console.log('requestOrigin is', requestOrigin);
+		console.log('requestOrigin is', JSON.stringify(requestOrigin) );
 		if (allowedOrigins.includes(requestOrigin)) {
 			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin.headers.origin;
 		} else {
