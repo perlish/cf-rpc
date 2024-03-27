@@ -5,16 +5,28 @@ interface Env {
 
 export default {
 	async fetch(request: Request, env: Env) {
+		const allowedOrigins = [
+			'https://train.synesis.one',
+			'https://dyf-staging.synesis.one',
+			'https://kanon.exchange',
+			'https://kanon.synesis.one',
+			'https://kanon-staging.synesis.one'
+		];
+
 		const corsHeaders: Record<string, string> = {
 			"Access-Control-Allow-Methods": "GET, HEAD, POST, PUT, OPTIONS",
 			"Access-Control-Allow-Headers": "*",
 		}
-
-		const mobileHeader = request.headers.get('X-Synesis-Mobile')
-		if (mobileHeader || mobileHeader === 'true') {
-			corsHeaders['Access-Control-Allow-Origin'] = '*'
+		const requestOrigin = request.headers.origin;
+		if (allowedOrigins.includes(requestOrigin)) {
+			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin;
 		} else {
-			corsHeaders['Access-Control-Allow-Origin'] = 'synesis.one, *.synesis.one'
+			const mobileHeader = request.headers.get('X-Synesis-Mobile')
+			if (mobileHeader || mobileHeader === 'true') {
+				corsHeaders['Access-Control-Allow-Origin'] = '*'
+			}else{
+				corsHeaders['Access-Control-Allow-Origin'] = 'null';
+			}
 		}
 
 		if (request.method === "OPTIONS") {
