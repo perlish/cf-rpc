@@ -17,8 +17,8 @@ export default {
 			"Access-Control-Allow-Methods": "GET, HEAD, POST, PUT, OPTIONS",
 			"Access-Control-Allow-Headers": "*",
 		}
-		const requestOrigin = request.headers.origin;
-		console.log('requestOrigin', requestOrigin)
+		const requestOrigin = request.headers;
+		console.log('requestOrigin is', requestOrigin);
 		if (allowedOrigins.includes(requestOrigin)) {
 			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin;
 		} else {
