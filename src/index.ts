@@ -23,7 +23,7 @@ export default {
 			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin;
 		} else {
 			const mobileHeader = request.headers.get('X-Synesis-Mobile')
-			if (mobileHeader || mobileHeader === 'true') {
+			if (mobileHeader && mobileHeader === 'true') {
 				corsHeaders['Access-Control-Allow-Origin'] = '*'
 			}else{
 				corsHeaders['Access-Control-Allow-Origin'] = 'null';
