@@ -7,3 +7,9 @@
 /dist
 
 test.js
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/codeStyles/Project.xml
+/.idea/.gitignore
+/.idea/cf-rpc.iml
+/.idea/modules.xml
+/.idea/vcs.xml

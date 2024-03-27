@@ -18,13 +18,12 @@ export default {
 			"Access-Control-Allow-Methods": "GET, HEAD, POST, PUT, OPTIONS",
 			"Access-Control-Allow-Headers": "*",
 		}
-		if (supportedDomains) {
-			const origin = request.headers.get('Origin')
-			if (origin && supportedDomains.includes(origin)) {
-				corsHeaders['Access-Control-Allow-Origin'] = origin
-			}
-		} else {
+
+		const mobileHeader = request.headers.get('X-Synesis-Mobile')
+		if (mobileHeader) {
 			corsHeaders['Access-Control-Allow-Origin'] = '*'
+		} else {
+			corsHeaders['Access-Control-Allow-Origin'] = 'train.synesis.one, dyf-staging.synesis.one, kanon.exchange, kanon.synesis.one, kanon-staging.synesis.one'
 		}
 
 		if (request.method === "OPTIONS") {
@@ -35,7 +34,6 @@ export default {
 		}
 
 		const upgradeHeader = request.headers.get('Upgrade')
-
 		if (upgradeHeader || upgradeHeader === 'websocket') {
 			return await fetch(`https://mainnet.helius-rpc.com/?api-key=${env.HELIUS_API_KEY}`, request)
 		}
@@ -43,7 +41,18 @@ export default {
 
 		const { pathname, search } = new URL(request.url)
 		const payload = await request.text();
-		const proxyRequest = new Request(`https://${pathname === '/' ? 'mainnet.helius-rpc.com' : (pathname === '/das' ? 'api.helius.xyz' : 'mainnet.helius-rpc.com')}${pathname}?api-key=${env.HELIUS_API_KEY}${search ? `&${search.slice(1)}` : ''}`, {
+		let baseUrl;
+
+		if (pathname === '/das') {
+			baseUrl = 'api.helius.xyz';
+		} else {
+			baseUrl = 'mainnet.helius-rpc.com';
+		}
+
+		const queryString = `api-key=${env.HELIUS_API_KEY}${search ? `&${search.slice(1)}` : ''}`;
+		const fullUrl = `https://${baseUrl}${pathname}?${queryString}`;
+
+		const proxyRequest = new Request(fullUrl, {
 			method: request.method,
 			body: payload || null,
 			headers: {
