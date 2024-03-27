@@ -23,7 +23,7 @@ export default {
 		if (mobileHeader || mobileHeader === 'true') {
 			corsHeaders['Access-Control-Allow-Origin'] = '*'
 		} else {
-			corsHeaders['Access-Control-Allow-Origin'] = 'https://*.synesis.one'
+			corsHeaders['Access-Control-Allow-Origin'] = 'https://*.synesis.one/'
 		}
 
 		if (request.method === "OPTIONS") {
