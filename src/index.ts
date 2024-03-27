@@ -17,10 +17,10 @@ export default {
 			"Access-Control-Allow-Methods": "GET, HEAD, POST, PUT, OPTIONS",
 			"Access-Control-Allow-Headers": "*",
 		}
-		const requestOrigin = request.headers;
-		console.log('requestOrigin is', JSON.stringify(requestOrigin) );
+		const requestOrigin = request.headers.get('Origin');
+		console.log('requestOrigin is', requestOrigin );
 		if (allowedOrigins.includes(requestOrigin)) {
-			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin.headers.origin;
+			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin.headers.get('Origin');
 		} else {
 			const mobileHeader = request.headers.get('X-Synesis-Mobile')
 			if (mobileHeader || mobileHeader === 'true') {
