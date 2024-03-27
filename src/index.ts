@@ -18,9 +18,8 @@ export default {
 			"Access-Control-Allow-Headers": "*",
 		}
 		const requestOrigin = request.headers.get('Origin');
-		console.log('requestOrigin is', requestOrigin );
 		if (allowedOrigins.includes(requestOrigin)) {
-			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin.headers.get('Origin');
+			corsHeaders['Access-Control-Allow-Origin'] = requestOrigin;
 		} else {
 			const mobileHeader = request.headers.get('X-Synesis-Mobile')
 			if (mobileHeader || mobileHeader === 'true') {
