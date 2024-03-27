@@ -5,15 +5,6 @@ interface Env {
 
 export default {
 	async fetch(request: Request, env: Env) {
-
-		// If the request is an OPTIONS request, return a 200 response with permissive CORS headers
-		// This is required for the Helius RPC Proxy to work from the browser and arbitrary origins
-		// If you wish to restrict the origins that can access your Helius RPC Proxy, you can do so by
-		// changing the `*` in the `Access-Control-Allow-Origin` header to a specific origin.
-		// For example, if you wanted to allow requests from `https://example.com`, you would change the
-		// header to `https://example.com`. Multiple domains are supported by verifying that the request
-		// originated from one of the domains in the `CORS_ALLOW_ORIGIN` environment variable.
-		const supportedDomains = env.CORS_ALLOW_ORIGIN ? env.CORS_ALLOW_ORIGIN.split(',') : undefined;
 		const corsHeaders: Record<string, string> = {
 			"Access-Control-Allow-Methods": "GET, HEAD, POST, PUT, OPTIONS",
 			"Access-Control-Allow-Headers": "*",
@@ -23,7 +14,7 @@ export default {
 		if (mobileHeader || mobileHeader === 'true') {
 			corsHeaders['Access-Control-Allow-Origin'] = '*'
 		} else {
-			corsHeaders['Access-Control-Allow-Origin'] = 'https://*.synesis.one/'
+			corsHeaders['Access-Control-Allow-Origin'] = 'synesis.one, *.synesis.one'
 		}
 
 		if (request.method === "OPTIONS") {
