@@ -10,7 +10,12 @@ export default {
 			'https://dyf-staging.synesis.one',
 			'https://kanon.exchange',
 			'https://kanon.synesis.one',
-			'https://kanon-staging.synesis.one'
+			'https://kanon-staging.synesis.one',
+			'https://www.train.synesis.one',
+			'https://www.dyf-staging.synesis.one',
+			'https://www.kanon.exchange',
+			'https://www.kanon.synesis.one',
+			'https://www.kanon-staging.synesis.one'
 		];
 
 		const corsHeaders: Record<string, string> = {
