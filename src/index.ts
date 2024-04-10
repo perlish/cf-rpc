@@ -15,7 +15,9 @@ export default {
 			'https://www.dyf-staging.synesis.one',
 			'https://www.kanon.exchange',
 			'https://www.kanon.synesis.one',
-			'https://www.kanon-staging.synesis.one'
+			'https://www.kanon-staging.synesis.one',
+			'https://localhost:3000',
+			'http://localhost:3000'
 		];
 
 		const corsHeaders: Record<string, string> = {
