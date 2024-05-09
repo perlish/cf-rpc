@@ -17,7 +17,8 @@ export default {
 			'https://www.kanon.synesis.one',
 			'https://www.kanon-staging.synesis.one',
 			'https://localhost:3000',
-			'http://localhost:3000'
+			'http://localhost:3000',
+			'https://www.t2e-backoffice.synesis.one'
 		];
 
 		const corsHeaders: Record<string, string> = {
