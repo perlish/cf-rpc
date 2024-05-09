@@ -10,7 +10,8 @@ export default {
 			'https://dyf-staging.synesis.one',
 			'https://kanon.exchange',
 			'https://kanon.synesis.one',
-			'https://kanon-staging.synesis.one'
+			'https://kanon-staging.synesis.one',
+			'https://www.t2e-backoffice.synesis.one/'
 		];
 
 		const corsHeaders: Record<string, string> = {
